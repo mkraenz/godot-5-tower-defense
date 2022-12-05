@@ -14,13 +14,14 @@ enum State {
 
 var direction = Vector2.LEFT
 var velocity = Vector2.ZERO
+var gravity = Vector2.DOWN * 10
 var state = State.Walk
 
 func _physics_process(delta: float) -> void:
 	match state:
 		State.Walk:
 			velocity = velocity.move_toward(direction * max_speed, delta * acceleration)
-			velocity = move_and_slide(velocity)
+			velocity = move_and_slide(velocity + gravity)
 			if position.x < 50:
 				state = State.Attack
 				print("switching to attack state")
