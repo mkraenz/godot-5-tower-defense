@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemies/Walker.gd" type="Script" id=1]
 [ext_resource path="res://characters_packed.png" type="Texture" id=2]
+[ext_resource path="res://Common/Stats.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -25,6 +26,7 @@ height = 2.0
 
 [node name="Walker" type="KinematicBody2D"]
 position = Vector2( 0, -12 )
+collision_layer = 8
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -39,4 +41,7 @@ shape = SubResource( 4 )
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.1
 
+[node name="Stats" parent="." instance=ExtResource( 3 )]
+
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]

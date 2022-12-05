@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 onready var nexus = Nexus
 onready var attack_cooldown = $AttackCooldown
+onready var stats = $Stats
 
-export var damage = 1.0
 const acceleration = 200
-const max_speed = 100
+const max_speed = 30
 
 enum State {
 	Walk,
@@ -32,5 +32,15 @@ func _on_AttackCooldown_timeout() -> void:
 	attack()
 
 func attack() -> void:
-	nexus.take_damage(damage)
+	nexus.take_damage(stats.damage)
 	attack_cooldown.start()
+
+func take_damage(damage: float) -> void:
+	stats.health -= damage
+
+func _on_Stats_no_health() -> void:
+	die()
+
+func die():
+	# TODO death anim
+	queue_free()
