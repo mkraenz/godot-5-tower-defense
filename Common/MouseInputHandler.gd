@@ -3,6 +3,7 @@ extends Node
 const Spikes = preload("res://Towers/Spikes.tscn")
 
 onready var ray = $Ray
+onready var nexus = Nexus
 
 var far_off_screen = Vector2(-10000, -10000)
 var spawn_point = Vector2.ZERO
@@ -41,8 +42,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# TODO use a camera and make it work, too
 	if event.is_action_pressed("select"):
-		if blueprint.can_be_placed:
+		if blueprint.can_be_placed and nexus.can_buy(blueprint.costs):
 			place_instance()
+
 		# adapted code for 3.5 from https://godotengine.org/qa/3719/how-to-get-a-node-by-mouse-click comment by luislodosm 
 		# var mouse_position = event.positionK
 		# var space_state = world.get_world_2d().direct_space_state
@@ -58,3 +60,4 @@ func place_instance() -> void:
 	var instance = Spikes.instance()
 	instance.global_position = blueprint.global_position
 	get_tree().current_scene.add_child(instance)
+	nexus.add_money(-blueprint.costs)

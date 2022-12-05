@@ -1,6 +1,7 @@
 extends Area2D
 
 export var damage := 1.0
+export var costs := 100.0
 
 onready var cooldown := $DamageCooldown
 onready var shape := $Shape
