@@ -1,16 +1,25 @@
 extends HBoxContainer
 
 onready var label = $Label
-onready var timer = $Timer # TODO probably better to use lerp (with cubic interpolation with fixed time)
 
 var target_money = 0.0
 var current_money = 0.0
+var weight := 0.0
+const anim_speed := 1
 
-func _on_Timer_timeout() -> void:
-    current_money += sign(target_money - current_money)
+func _ready() -> void:
+    set_physics_process(false)
+
+func _physics_process(delta: float) -> void:
+    weight += delta * anim_speed
+    weight = clamp(weight, 0, 1)
+    current_money = ceil(lerp(current_money, target_money, weight))
+
     label.text = str(current_money)
-    if target_money != current_money:
-        timer.start()
+    
+    if current_money == target_money:
+        weight = 0.0
+        set_physics_process(false)
 
 func init_money(amount: float) -> void:
     target_money = amount
@@ -19,5 +28,4 @@ func init_money(amount: float) -> void:
 
 func update_money(amount: float):
     target_money = amount
-    if timer.is_stopped():
-        timer.start()
+    set_physics_process(true)
