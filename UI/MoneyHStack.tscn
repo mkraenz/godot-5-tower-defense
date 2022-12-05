@@ -24,3 +24,5 @@ margin_right = 46.0
 margin_bottom = 16.0
 text = "000"
 valign = 1
+
+[node name="Tween" type="Tween" parent="."]
