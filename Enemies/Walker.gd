@@ -44,4 +44,5 @@ func _on_Stats_no_health() -> void:
 
 func die():
 	# TODO death anim
+	nexus.add_money(stats.bounty)
 	queue_free()
