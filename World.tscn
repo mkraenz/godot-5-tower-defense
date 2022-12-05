@@ -42,4 +42,3 @@ Spawn = ExtResource( 1 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource( 7 )]
-mouse_filter = 2
