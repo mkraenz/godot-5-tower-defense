@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Common/TowerDetector.gd" type="Script" id=1]
+
+[node name="TowerDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Used to detect whether a new tower can be placed at the mouse position. To use this, add as a child node of some tower, then enable \"Editable children\" and add a collision shape."
+}
+
+[connection signal="area_entered" from="." to="." method="_on_TowerCollider_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_TowerCollider_area_exited"]
