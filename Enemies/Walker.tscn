@@ -17,7 +17,7 @@ animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "walk",
-"speed": 15.0
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -32,6 +32,8 @@ script = ExtResource( 1 )
 position = Vector2( 0, -12 )
 frames = SubResource( 3 )
 animation = "walk"
+frame = 1
+playing = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -7 )

@@ -4,8 +4,8 @@ var speed = 5
 onready var initial_position = position
 onready var bottom_right = Vector2(limit_right - initial_position.x, limit_top - initial_position.y)
 
-func _unhandled_input(event: InputEvent) -> void:	
-	var input_vec = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+func _unhandled_input(_event: InputEvent) -> void:	
+	var input_vec = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if input_vec != Vector2.ZERO:
 		position += input_vec * speed
 		position.x = max(position.x, initial_position.x)

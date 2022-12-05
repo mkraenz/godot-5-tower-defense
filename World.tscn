@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemies/Walker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilemap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Towers/Spikes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Globals/MouseInputHandler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Cam.gd" type="Script" id=5]
+[ext_resource path="res://Enemies/Spawner.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
 
@@ -32,3 +33,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 editor_draw_limits = true
 script = ExtResource( 5 )
+
+[node name="Spawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( 359, 146 )
+Spawn = ExtResource( 1 )
