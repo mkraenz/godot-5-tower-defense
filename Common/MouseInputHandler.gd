@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const Spikes = preload("res://Towers/Spikes.tscn")
 
@@ -23,9 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		blueprint.turn_into_blueprint()
 
 	if event is InputEventMouseMotion:
-		var mouse_position = event.position
 		# to get the world coordinates, we have to correct the mouse position by the cam position
-		ray.global_position = mouse_position + cam.zero_based_position()
+		ray.global_position = get_global_mouse_position()
 		ray.force_raycast_update() # don't wait for next physics frame but immediately get the collision data
 		if ray.is_colliding():
 			var collision_point = ray.get_collision_point()
